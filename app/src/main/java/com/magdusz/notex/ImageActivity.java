@@ -23,6 +23,8 @@ import java.util.List;
 
 public class ImageActivity extends AppCompatActivity implements PointCollectorListener {
 
+    public static final String TAG = ImageActivity.class.getSimpleName();
+
     private PointCollector pointCollector = new PointCollector();
     private Database db = new Database(this);
 
@@ -49,6 +51,8 @@ public class ImageActivity extends AppCompatActivity implements PointCollectorLi
 
 
     private void showSetPasspointsPrompt() {
+        Log.d(TAG, "showSetPasspointsPrompt()");
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
 
