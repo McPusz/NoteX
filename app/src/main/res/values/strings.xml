@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">NoteX</string>
+    <string name="title_activity_main">NoteX notepad</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="edit_text_hint">Enter your text here.</string>
+    <string name="save">Save</string>
+    <string name="toast_cant_save">Unable to save note. Żodyn nie zapisze. ŻODYN</string>
+    <string name="title_activity_image">Notex</string>
+    <string name="password_image">Password Image</string>
+    <string name="ok">I get it.</string>
+    <string name="create_passpoint_sequence">Create secret passpoit sequence</string>
+    <string name="touch_four_points">Touch 5 points on the image to set the passpoint sequence. You must remember them to gain access to your notes in future.</string>
+    <string name="storing_data">Storing...</string>
+</resources>
