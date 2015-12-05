@@ -14,11 +14,12 @@ import java.util.List;
  */
 public class PointCollector implements View.OnTouchListener {
 
+    public static final int NUM_POINTS = 5;
     private PointCollectorListener listener;
     private List<Point> points = new ArrayList<Point>();
 
     public boolean onTouch(View v, MotionEvent event) {
-// On sobie tutaj zbiera info o po³o¿eniach punktów
+// On sobie tutaj zbiera info o poozeniach punktow
         int x = Math.round(event.getX()); //Math.round zaokragla do pikseli
         int y = Math.round(event.getY());
 
@@ -28,9 +29,9 @@ public class PointCollector implements View.OnTouchListener {
 
         points.add(new Point(x, y)); //tutaj dodaje punkty o wspolrzednych x i y
 
-        if (points.size() == 5) { //Je¿eli kliknelam 5 razy, to mowie swojej klasie, ze ma dodac je do database
+        if (points.size() == NUM_POINTS) { //Jezeli kliknelam 5 razy, to mowie swojej klasie, ze ma dodac je do database
             if (listener != null) {
-                // !- is not equal to null, wtedy, je¿eli juz zebralismy 5 punktow, to sie odwoluje do MainAct
+                // !- is not equal to null, wtedy, jezeli juz zebralismy 5 punktow, to sie odwoluje do MainAct
                 listener.pointsCollected(points);
             }
 

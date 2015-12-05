@@ -12,4 +12,7 @@
     <string name="create_passpoint_sequence">Create secret passpoit sequence</string>
     <string name="touch_four_points">Touch 5 points on the image to set the passpoint sequence. You must remember them to gain access to your notes in future.</string>
     <string name="storing_data">Storing...</string>
+    <string name="access_denied"> ŹLE LUJU!!!</string>
+    <string name="checking_passpoints">Checking passpoints...</string>
+
 </resources>

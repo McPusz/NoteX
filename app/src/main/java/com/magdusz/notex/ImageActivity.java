@@ -2,6 +2,7 @@ package com.magdusz.notex;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.media.Image;
@@ -17,6 +18,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -119,10 +121,67 @@ public class ImageActivity extends AppCompatActivity implements PointCollectorLi
         task.execute();
     }
 
-    private void verifyPasspoints(final List<Point> points) {
+    private void verifyPasspoints(final List<Point> touchedPoints) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.checking_passpoints);
+        final AlertDialog dlg = builder.create();
+        dlg.show();
+
+        AsyncTask<Void, Void, Boolean> task = new AsyncTask<Void, Void, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... params) {
+
+                List<Point> savedPoints = db.getPoints();
+
+                Log.d(MainActivity.DEBUGTAG,
+                        "Saved points: " + savedPoints.size());
+
+                if (savedPoints.size() != PointCollector.NUM_POINTS
+                    || touchedPoints.size()!=PointCollector.NUM_POINTS){ //!= is not equal to
+                    return false;
+//                        Log.d(MainActivity.DEBUGTAG, "Saved points: "+ savedPoints.size());
+//                        Log.d(MainActivity.DEBUGTAG, "Touched Points: " + touchedPoints.size());
+//                    }
+                }
+
+                for (int i=0; i < PointCollector.NUM_POINTS; i++){
+                    Point saved = savedPoints.get(i);
+                    Point touched = touchedPoints.get(i);
+
+                    int xDiff = saved.x - touched.x;
+                    int yDiff = saved.y - touched.y;
+
+                    int distSquared = xDiff*xDiff + yDiff*yDiff;
+
+                    Log.d(MainActivity.DEBUGTAG, "Dist squared: " + distSquared);
+
+                    if(distSquared > POINT_CLOSENESS*POINT_CLOSENESS){
+                          return false;
+                    }
+                }
+
+                return true;
+            }
+
+            @Override
+            public void onPostExecute(Boolean pass){ //tu otrzymujemy to co jst
+
+              dlg.dismiss();
+                pointCollector.clear();
+
+                if (pass){
+                    Intent i = new Intent(ImageActivity.this, MainActivity.class);
+                    startActivity(i);
+                }else {
+                    Toast.makeText(ImageActivity.this, R.string.access_denied, Toast.LENGTH_LONG).show();
+                }
+            }
+
+        };
+        task.execute();
 
     }
-
     @Override
     public void pointsCollected(final List<Point> points) {
         SharedPreferences prefs = getPreferences(MODE_PRIVATE);
