@@ -14,5 +14,7 @@
     <string name="storing_data">Storing...</string>
     <string name="access_denied"> ŹLE LUJU!!!</string>
     <string name="checking_passpoints">Checking passpoints...</string>
+    <string name="lock">Lock</string>
+    <string name="menu_passpoints_reset">Reset Passpoints</string>
 
 </resources>

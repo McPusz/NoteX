@@ -1,6 +1,7 @@
 package com.magdusz.notex;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -42,6 +43,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    public boolean onCreatePanelMenu(int featureId, Menu menu) {
+
+        switch (item.getItemId()){  //tu leży pies pogrzebany
+            case R.id.menu_passpoints_reset:
+                Toast.makeText(this, "McPusz", Toast.LENGTH_LONG);
+                return true;
+
+        default:
+            return super.onCreatePanelMenu(featureId, menu);
+        }
+
+    }
+
+    private void addLockButtonListener()
+    {
+        Button lockBtn = (Button)findViewById(R.id.lock);
+
+        lockBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(DEBUGTAG, "start image activity");
+                startActivity(new Intent(MainActivity.this, ImageActivity.class));
+            }
+        });
+
+    }
     private void loadSavedFile(){
         try {
 
@@ -103,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) {  //MENU
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
@@ -124,7 +153,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void metod(){
 
-    }
+
 }
