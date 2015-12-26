@@ -43,19 +43,27 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {  //MENU
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
     @Override
-    public boolean onCreatePanelMenu(int featureId, Menu menu) {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
-        switch (item.getItemId()){  //tu leży pies pogrzebany
+        switch (id){
             case R.id.menu_passpoints_reset:
-                Toast.makeText(this, "McPusz", Toast.LENGTH_LONG);
-                return true;
-
-        default:
-            return super.onCreatePanelMenu(featureId, menu);
+                Toast.makeText(this, "McPusz", Toast.LENGTH_LONG).show();
+                break;
         }
 
+        return super.onOptionsItemSelected(item);
     }
 
     private void addLockButtonListener()
@@ -130,29 +138,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {  //MENU
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
 
 }
